@@ -30,7 +30,7 @@ app.post("/repositories", (request, response) => {
     likes: 0
   }
   repositories.push(repository)
-  return response.status(200).json(repositories)
+  return response.status(200).json(repository)
 });
 
 app.put("/repositories/:id", (request, response) => {
@@ -57,8 +57,8 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryIndex, 1)
 
-  return response.status(200).json({
-    status: 200,
+  return response.status(204).json({
+    status: 204,
     friendlyMsg: 'Repository deleted'
   })
 
@@ -74,8 +74,7 @@ app.post("/repositories/:id/like", (request, response) => {
   repositories[repositoryIndex].likes += 1
 
   return response.status(200).json({
-    status: 200,
-    friendlyMsg: 'Liked'
+    likes: repositories[repositoryIndex].likes
   })
 });
 
